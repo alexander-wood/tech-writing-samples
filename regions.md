@@ -39,12 +39,11 @@ The basic logic to connect is:
 1. Set a `PRIMARY_REGION` environment variable in your `fly.toml` file noting the region where the write leader is located.
 
 ```toml
-// fly.toml
+# fly.toml
 
-//...
 [env]
   PRIMARY_REGION = "sea"
-//...
+
 ```
 
 2. Check the `FLY_REGION` environment variable at connect time. 
