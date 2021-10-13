@@ -161,6 +161,7 @@ redis://x:<password>@<primary-region>.<appname>.internal:6379
 # example in sea
 redis://x:password@sea.example-app.internal:6379
 ```
+
 To generate the URL for a local read replica in Ruby, you might do something like:
 
 ```ruby
