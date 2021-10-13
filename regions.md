@@ -1,9 +1,7 @@
 # Adding Regions With PostgreSQL and Redis
-
-Your application's performance may be improved by running it in multiple regions. This guide will walk you through the process of adding regions to a Fly.io application and configuring a PostgreSQL database and Redis cache to work across multiple regions. 
+Your application's performance may be improved by running it in multiple regions. This guide will walk you through the process of adding regions to a Fly.io application and configuring a PostgreSQL database and Redis store to work across multiple regions. 
 
 ## Adding Regions
-
 Fly.io runs applications from datacenters located throughout the world. These datacenters are identified by region. Fly.io will automatically route traffic to the region closest to the user. 
 
 To add a region, you'll need its three-letter Region ID. The list of regions can be found [here](https://fly.io/docs/reference/regions/). This demonstration will walk you through adding the region `nrt` (Tokyo, Japan).
@@ -13,25 +11,22 @@ To add a region, you'll need its three-letter Region ID. The list of regions can
 3. Finally, run `fly status` to see your VMs.
 
 ## PostgreSQL
-
 It's straightforward to create a multi-region PostgreSQL cluster on Fly.io. This guide will walk you through the steps to create a PostgreSQL cluster in one region and a read replica in another. For the purposes of demonstration, we'll use the regions `sea` and `nrt`. 
 
-Please note that this guide assumes that the application is structured so that only some requests include writes. Furthermore, it assumes that HTTP requests are the primary method of interacting with the database. If your application writes to the database on every request or makes heavy use of long-lived connections like websockets, please see additional guidance [here](https://fly.io/docs/getting-started/multi-region-databases/#this-is-wrong-for-some-apps).
+This guide assumes that the application is structured so that only some requests include writes. Furthermore, it assumes that HTTP requests are the primary method of interacting with the database. If your application writes to the database on every request or makes use of long-lived connections like websockets, please see additional guidance [here](https://fly.io/docs/getting-started/multi-region-databases/#this-is-wrong-for-some-apps).
 
 ### Creating A Cluster
-
 There are a few steps to get a multi-region PostgreSQL cluster up and running.
 
-1. First, run `fly pg create --name example-postgres --region sea` to create a PostgreSQL cluster. Note that this creates two databases, a write primary and a read replica. 
+1. First, run `fly pg create --name example-postgres --region sea` to create a PostgreSQL cluster. This creates two databases, a write primary and a read replica. 
 2. Second, run `fly volumes create pg_data -a example-postgres --size 10 --region nrt` to create a read replica in the `nrt` region.
 3. Next, run `fly scale count 3 -a example-postgres` to add new VMs. You'll need one VM per database.
-4. At this point, run `fly status -a example-postgres` to see your database cluster.
+4. At this point, you can run `fly status -a example-postgres` to see your database cluster.
 5. Finally, run `fly pg attach --example-app example-postgres` to attach your cluster to your application. This creates a `DATABASE_URL` secret in your application and makes it available as an environment variable.
 
 At this point, the database cluster is running! However, in order to get all of the performance benefits of multi-region PostgreSQL, you may need to configure the connection string in your application logic. 
 
 ### Configuring the Connection String
-
 By default, the generated connection string uses port `5432` to connect to PostgreSQL. This port always forwards to a writable instance. Thus, you'll need to update your application logic to connect on port `5433` in regions which are not the primary.
 
 The basic logic to connect is:
@@ -77,10 +72,9 @@ end
 For advanced information on working with multi-region PostgreSQL, please consult [this guide](https://fly.io/docs/getting-started/multi-region-databases/).
 
 ## Configuring Redis
-
 Adding Redis to your application is a straightforward procedure. This guide will walk you through creating a Redis cluster, once again using `sea` and `nrt`.
 
-Before we begin, we'll need to create a couple files and update our `fly.toml` file. The first file we need to create is a `start-redis-server.sh` script. The Fly.io engineering team has created a sample one:
+Before we begin, we'll need to configure Redis and update our `fly.toml` file. The first file we need to create is a `start-redis-server.sh` script. The Fly.io engineering team has created a sample one:
 
 ```sh
 #!/bin/sh
@@ -130,7 +124,7 @@ replica-priority 0
 # replica should come after this
 ```
 
-And finally, we need to update our `fly.toml` file. Remember that `sea` is the primary region we're using for the purposes of this demonstration: if your primary is located in a different region, you'll have to update the value.
+And finally, we need to update our `fly.toml` file:
 
 ```toml
 [experimental]
@@ -147,17 +141,15 @@ And finally, we need to update our `fly.toml` file. Remember that `sea` is the p
 With that setup out of the way, we're ready to create our cluster!
 
 ### Creating a Cluster
-
 There are only a few steps necessary to get a multi-region Redis cluster up and running:
 
 1. First, run `fly volumes create redis_server --size 10 --region sea` to create the primary volume.
 2. Next, run `fly volumes create redis_server --size 10 --region nrt` to create the read replica. 
-3. Finally, run `fly scale count 2` to tell Fly.io to add more machines. You'll need one machine per region, so if you're adding multiple regions, your `count` may be higher.
+3. Finally, run `fly scale count 2` to tell Fly.io to add more machines. You'll need one machine per region.
 
 The Redis cluster is now ready to use! However, as with PostgreSQL, we'll need to add some logic so that writes which need to propagate to all regions are sent to the primary, while writes with ephemeral data are sent to the nearest replica.
 
 ### Configuring Multi-Region Redis
-
 The primary Redis URL is:
 
 ```conf
@@ -188,4 +180,3 @@ class Fly
 end
 ```
 You can find additional guidance on configuring and using Redis [here](https://fly.io/docs/reference/redis/).
-
