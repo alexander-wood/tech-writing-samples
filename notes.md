@@ -1,7 +1,7 @@
 # Notes on the docs
 ## HOWTO guide: Regions
 ### Methodology
-This document assumes that the reader already has `flyctl` installed and has a Fly.io application. It walks them through the required commands in an approachable manner and balances length and utility. 
+This document assumes that the reader already has `flyctl` installed and has an application. It walks them through the required commands in an approachable manner and balances length and utility. 
 
 I chose to include DB configuration in the scope because "friendly" docs which omit important information or fail to warn you about inappropriate use cases are frustrating experiences for developers. On similar lines, I included a warning about use cases where multi-region Postgres would not be a good choice and linked to the explanation in the existing documentation. 
 
@@ -16,13 +16,13 @@ The way to measure the doc's usability is a usability study. Ask people to follo
 
 ## Reference doc: Static asset caching
 ### Methodology
-In this doc, I assume that the reader is someone seeking "just the facts". As a result, I try to convey the information in as brief and straightforward a manner as possible. I chose to follow the general pattern as elsewhere in the configuration reference doc - consistency is important.
+This doc assumes the audience is an expert or someone seeking "just the facts". Therefore, I convey the information in as brief and straightforward a manner as possible. I chose to follow the general pattern as elsewhere in the configuration reference doc - consistency is important.
 
 I noticed in the community thread on the feature that there were a few feature requests which were under discussion (`cache-control` headers, HTTP proxy, 304 if the etag matches). They still seemed like open questions, so I didn't include them.
 
 ### Testing Effectiveness
 A reference document should provide comprehensive, pertinent details for consultation about a subject. To measure how effective it is, I would compare the number of support requests before and after publication, as well as posts which are fruitfully answered with a link to the document.
 
-In terms of quality, I think completeness and accuracy are more important in reference documentation than elsewhere. To measure this, I would ask a subject matter expert for review.
+In terms of quality, completeness and accuracy are more important in reference documentation than elsewhere. To measure this, I would ask a subject matter expert for review.
 
-To evaluate the document's usability, I would devise some tasks the document could be used for and ask them to use the documents to perform them while I observe. (IE, perhaps there might be a sample application which is missing the `statics` sections, and the participant has to use the reference docs to 'fill in the blanks'.)
+To evaluate the document's usability, I would devise some tasks the document could be used for and ask them to use the documents to perform them while I observe. (IE, there might be a sample application which is missing the `statics` sections and the participant has to use the docs to 'fill in the blanks'.)
