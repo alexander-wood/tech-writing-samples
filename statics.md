@@ -15,7 +15,7 @@ The ``statics`` section is an array of tables in TOML. The section is marked wit
   url_prefix = "/static"
 ```
 
-`guest_path`: The path where the files to serve are located in your container. You may refer multiple mappings to the same `guest_path`. *Please note:* Our static cache service does not currently honor symlinks. You must use the absolute original path in your configuration.
+`guest_path`: The path where the files to serve are located in your container. You may refer multiple mappings to the same `guest_path`. **Please note:** Our static cache service does not currently honor symlinks. You must use the absolute original path in your configuration.
 
 `url_prefix`: The URL path which will serve the files from the static asset cache. You must not use the same `url_prefix` for multiple mappings. You may have mappings with similar prefixes, such as `/static/foo` and `/static/bar`.
 
