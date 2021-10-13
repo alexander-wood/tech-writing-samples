@@ -10,6 +10,8 @@ To add a region, you'll need its three-letter Region ID. The list of regions can
 2. Next, run `fly scale count 2` to add a new VM. You'll need one VM per region.
 3. Finally, run `fly status` to see your VMs.
 
+Simple! Now, let's add a database!
+
 ## PostgreSQL
 It's straightforward to create a multi-region PostgreSQL cluster on Fly.io. This guide will walk you through the steps to create a PostgreSQL cluster in one region and a read replica in another. For the purposes of demonstration, we'll use the regions `sea` and `nrt`. 
 
