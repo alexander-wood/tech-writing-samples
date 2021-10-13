@@ -21,7 +21,7 @@ This doc assumes the audience is an expert or someone seeking "just the facts". 
 I noticed in the community thread on the feature that there were a few feature requests which were under discussion (`cache-control` headers, HTTP proxy, 304 if the etag matches). They still seemed like open questions, so I didn't include them.
 
 ### Testing Effectiveness
-A reference document should provide comprehensive, pertinent details for consultation about a subject. To measure how effective it is, I would compare the number of support requests before and after publication, as well as posts which are fruitfully answered with a link to the document.
+A reference document should provide comprehensive, pertinent details for consultation about a subject. To measure its fitness for purpose, I would compare the number of support requests before and after publication, as well as posts which are fruitfully answered with a link to the document.
 
 In terms of quality, completeness and accuracy are more important in reference documentation than elsewhere. To measure this, I would ask a subject matter expert for review.
 
