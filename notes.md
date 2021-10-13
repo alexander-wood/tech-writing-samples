@@ -1,9 +1,9 @@
 # Notes on the docs
 ## HOWTO guide: Regions
 ### Methodology
-In this document, I assume that the reader already has `flyctl` installed and has a Fly.io application. I walk them through the required commands to run an application in multiple regions, as well as configure a PostgreSQL database and Redis store. I try to convey the information in an approachable manner and maintain a balance between length and utility.
+This document assumes that the reader already has `flyctl` installed and has a Fly.io application. It walks them through the required commands in an approachable manner and balances length and utility. 
 
-I chose the scope because I believe nothing irritates a developer quite like "friendly" docs which omit important information or fail to warn you about inappropriate use cases. Therefore, I included a warning about use cases where multi-region Postgres would not be a good choice and linked to the explanation in the existing documentation. 
+I chose to include DB configuration in the scope because "friendly" docs which omit important information or fail to warn you about inappropriate use cases are frustrating experiences for developers. On similar lines, I included a warning about use cases where multi-region Postgres would not be a good choice and linked to the explanation in the existing documentation. 
 
 ### Testing Effectiveness
 I would evaluate the documents in terms of purpose, quality, and usability. 
