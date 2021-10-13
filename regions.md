@@ -38,7 +38,7 @@ The basic logic to connect is:
 
 1. Set a `PRIMARY_REGION` environment variable in your `fly.toml` file noting the region where the write leader is located.
 
-```json
+```toml
 // fly.toml
 
 //...
@@ -133,7 +133,7 @@ replica-priority 0
 
 And finally, we need to update our `fly.toml` file. Remember that `sea` is the primary region we're using for the purposes of this demonstration: if your primary is located in a different region, you'll have to update the value.
 
-```json
+```toml
 [experimental]
   auto_rollback = false
 
