@@ -26,7 +26,7 @@ There are a few steps to get a multi-region PostgreSQL cluster up and running.
 4. At this point, you can run `fly status -a example-postgres` to see your database cluster.
 5. Finally, run `fly pg attach --example-app example-postgres` to attach your cluster to your application. This creates a `DATABASE_URL` secret in your application and makes it available as an environment variable.
 
-At this point, the database cluster is running! However, in order to get all of the performance benefits of multi-region PostgreSQL, you may need to configure the connection string in your application logic. 
+At this point, the database cluster is running! However, in order to get all of the performance benefits of multi-region PostgreSQL, you will need to configure the connection string in your application logic. 
 
 ### Configuring the Connection String
 By default, the generated connection string uses port `5432` to connect to PostgreSQL. This port always forwards to a writable instance. Thus, you'll need to update your application logic to connect on port `5433` in regions which are not the primary.
@@ -149,7 +149,7 @@ There are a few steps necessary to get a multi-region Redis cluster up and runni
 2. Next, run `fly volumes create redis_server --size 10 --region nrt` to create the read replica. 
 3. Finally, run `fly scale count 2` to tell Fly.io to add more machines. You'll need one machine per region.
 
-The Redis cluster is now ready to use! However, we'll need to add some logic to route those writes which need to propagate to all regions to the primary and writes of ephemeral data are sent to the nearest replica. 
+The Redis cluster is now ready to use! However, you'll need to configure the Redis URL in your application logic. The best practice is to route those writes which need to propagate to all regions to the primary and writes of ephemeral data are sent to the nearest replica. Let's do that now.
 
 ### Configuring Multi-Region Redis URLs
 The primary Redis URL is:
@@ -182,4 +182,5 @@ class Fly
   end
 end
 ```
-You can find additional guidance on configuring and using Redis [here](https://fly.io/docs/reference/redis/).
+
+Once that's done, you will have a multi-region app with Postgres and Redis running! If you need additional information, you can find the main documentation about Redis on Fly [here](https://fly.io/docs/reference/redis/).
