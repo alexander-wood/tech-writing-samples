@@ -1,7 +1,7 @@
 # Notes on the docs
 ## HOWTO guide: Regions
 ### Methodology
-In this document, I assume that the reader already has `flyctl` installed and has a Fly.io application. I walk them through the required commands to run an application in multiple regions, as well as configure a PostgreSQL database and Redis store. I try to convey the information in a friendly, approachable manner and maintain a balance between length and utility.
+In this document, I assume that the reader already has `flyctl` installed and has a Fly.io application. I walk them through the required commands to run an application in multiple regions, as well as configure a PostgreSQL database and Redis store. I try to convey the information in an approachable manner and maintain a balance between length and utility.
 
 I chose the scope because I believe nothing irritates a developer quite like "friendly" docs which omit important information or fail to warn you about inappropriate use cases. Therefore, I included a warning about use cases where multi-region Postgres would not be a good choice and linked to the explanation in the existing documentation. 
 
@@ -21,7 +21,7 @@ In this doc, I assume that the reader is someone seeking "just the facts". As a 
 I noticed in the community thread on the feature that there were a few feature requests which were under discussion (`cache-control` headers, HTTP proxy, 304 if the etag matches). They still seemed like open questions, so I didn't include them.
 
 ### Testing Effectiveness
-A reference document should provide comprehensive, pertinent details for consultation about a subject. To measure how effective it is, I would compare the number of support requests before and after publication, as well as posts which are easily answered with a link to the document.
+A reference document should provide comprehensive, pertinent details for consultation about a subject. To measure how effective it is, I would compare the number of support requests before and after publication, as well as posts which are fruitfully answered with a link to the document.
 
 In terms of quality, I think completeness and accuracy are more important in reference documentation than elsewhere. To measure this, I would ask a subject matter expert for review.
 

@@ -1,6 +1,6 @@
 # Static Asset Caching
 
-The `statics` sections expose static assets built into your application's container to Fly's Anycast network. When Fly's Anycast network handles requests for your application, it looks for static mappings and satisfies those requests directly from our proxy. This allows you to serve HTML files, Javascript, and images without needing to run a web server inside your container. 
+The `statics` sections expose static assets built into your application's container to Fly's Anycast network. When Fly's Anycast network handles requests for your application, it looks for static mappings and satisfies those requests from our proxy. This allows you to serve HTML files, Javascript, and images without needing to run a web server inside your container. 
 
 You can have:
 * No `statics` section: The application has no static asset caches.
